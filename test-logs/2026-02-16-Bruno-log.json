@@ -1,0 +1,56 @@
+{
+  "logs": [
+    {
+      "requestName": "Get User Profile",
+      "timestamp": "2026-02-16T14:30:22+02:00",
+      "request": {
+        "url": "https://api.example.com/users/me",
+        "method": "GET",
+        "headers": {
+          "Authorization": "Bearer token123",
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "content-type": "application/json",
+          "content-length": "156"
+        },
+        "body": {
+          "id": "usr_123",
+          "name": "John Doe",
+          "email": "john@example.com"
+        }
+      }
+    },
+    {
+      "requestName": "Create Post",
+      "timestamp": "2026-02-16T14:30:15+02:00",
+      "request": {
+        "url": "https://api.example.com/posts",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer token123"
+        },
+        "body": {
+          "title": "Hello World",
+          "content": "This is my first post."
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "content-type": "application/json",
+          "content-length": "89"
+        },
+        "body": {
+          "id": "post_456",
+          "title": "Hello World",
+          "createdAt": "2026-02-16T14:30:15Z"
+        }
+      }
+    }
+  ]
+}
