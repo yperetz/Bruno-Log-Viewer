@@ -82,7 +82,10 @@ fs.writeFileSync(filename, safeStringify(logData));
 ```
 
 4. Create a `logs` folder inside your Bruno collection root (or the script will fail on first write).
-5. Enable filesystem access for collection scripts in `bruno.json` at the root of your collection:
+5. Enable filesystem access for collection scripts. Post-scripts need permission to use `fs`:
+
+   - **Bruno 3.1.0+:** Enable **Developer Mode** over Safe Mode for your collection (Collection → Edit → Scripts). See [JavaScript Sandbox docs](https://docs.usebruno.com/configure/javascript-sandbox).
+   - **Bruno < 3.1.0:** Add this to `bruno.json` at the root of your collection:
 
 ```json
 {
@@ -96,10 +99,11 @@ fs.writeFileSync(filename, safeStringify(logData));
 
 ### Troubleshooting: Filesystem Access
 
-Post-scripts need explicit permission to use `fs`. Per [GitHub issue #411](https://github.com/usebruno/bruno/issues/411):
+Post-scripts need explicit permission to use `fs`:
 
-- Add the `scripts.filesystemAccess.allow` setting in `bruno.json` as shown above.
-- On Windows, if you get an error like `Module '...\fs' is not allowed to be required`, you may also need to enable filesystem access in Bruno’s app settings (see [this discussion](https://github.com/usebruno/bruno/discussions/385#discussioncomment-7246390)).
+- **Bruno 3.1.0+:** Enable **Developer Mode** over Safe Mode for your collection. When using Bruno CLI, pass `--sandbox=developer` when running collections.
+- **Bruno < 3.1.0:** Add the `scripts.filesystemAccess.allow` setting in `bruno.json` as shown above.
+- On Windows, if you get an error like `Module '...\fs' is not allowed to be required`, ensure Developer Mode (3.1.0+) or `filesystemAccess.allow` (older versions) is enabled for the collection.
 
 **Security note:** Logs may contain sensitive data (headers, tokens, bodies). The `logs` folder is inside your collection directory. Consider adding `logs/` to `.gitignore` if your collection is version-controlled, or store the collection in a location you don’t commit.
 

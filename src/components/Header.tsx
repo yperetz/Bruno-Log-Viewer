@@ -6,6 +6,7 @@ interface HeaderProps {
   error: string | null;
   onSelectFolder: () => void;
   onSelectDate: (date: string) => void;
+  onRefreshDates: () => void;
   setCurrentDate: (date: string) => void;
 }
 
@@ -17,6 +18,7 @@ export function Header({
   error,
   onSelectFolder,
   onSelectDate,
+  onRefreshDates,
   setCurrentDate,
 }: HeaderProps) {
   const handleDateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -49,6 +51,7 @@ export function Header({
         <select
           value={currentDate ?? ''}
           onChange={handleDateChange}
+          onFocus={onRefreshDates}
           disabled={loading}
           className="px-3 py-1.5 text-sm border border-gray-300 rounded bg-white"
         >

@@ -35,6 +35,16 @@ export function useLogs() {
     }
   }, []);
 
+  const refreshDates = useCallback(async () => {
+    if (!logsPath) return;
+    try {
+      const { dates } = await window.logsApi.listDates();
+      setAvailableDates(dates);
+    } catch {
+      // ignore refresh errors
+    }
+  }, [logsPath]);
+
   const selectFolder = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -192,6 +202,7 @@ export function useLogs() {
     loading,
     error,
     selectFolder,
+    refreshDates,
     loadDate,
     selectEntry,
     setCurrentDate,

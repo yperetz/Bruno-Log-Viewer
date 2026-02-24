@@ -17,6 +17,7 @@ function App() {
     loading,
     error,
     selectFolder,
+    refreshDates,
     loadDate,
     selectEntry,
     setCurrentDate,
@@ -40,6 +41,7 @@ function App() {
         error={error}
         onSelectFolder={selectFolder}
         onSelectDate={loadDate}
+        onRefreshDates={refreshDates}
         setCurrentDate={setCurrentDate}
       />
 
